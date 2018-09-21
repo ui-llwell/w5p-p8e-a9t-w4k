@@ -1,4 +1,5 @@
 // pages/receivablesBusiness/receivablesBusiness.js
+var app = getApp();
 var sliderWidth = 96; // 需要设置slider的宽度，用于计算中间位置
 
 Page({
@@ -86,6 +87,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
@@ -94,6 +96,7 @@ Page({
         });
       }
     });
+    
   },
   tabClick: function (e) {
     this.setData({

@@ -22,8 +22,12 @@ page,
 .page__bd{
     padding-bottom: 0;
 }
-
-
+.weui-navbar {
+  background: #fff;
+}
+.content {
+  background: #fff;
+}
 
 .weui-navbar__item.weui-bar__item_on {
   color: #FC595A;
@@ -44,6 +48,7 @@ page,
   font-family: PingFangSC-Regular;
   font-size: 26rpx;
   color: #999999;
+  clear: both;
 }
 .content_time {
   position: absolute;
@@ -58,6 +63,7 @@ page,
   height: auto;
   padding: 20rpx;
   text-align: right;
+  background: #fff;
 }
 .total_title {
   font-family: PingFangSC-Regular;

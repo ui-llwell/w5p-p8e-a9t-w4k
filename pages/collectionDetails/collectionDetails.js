@@ -91,7 +91,7 @@ Page({
   onLoad: function (options) {
     console.log(options)
     this.setData({
-      isshow: options.collection
+      isshow: options.collection || options.num
       
     })
     if (this.data.isshow == 1) {

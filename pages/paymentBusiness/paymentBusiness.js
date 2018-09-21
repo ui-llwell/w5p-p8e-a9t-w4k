@@ -7,7 +7,7 @@ Page({
   data: {
     inputShowed: false,
     inputVal: "",
-    tabs: ["待通知", "待付款","已付款"],
+    tabs: ["待付款", "已付款"],
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,
@@ -15,29 +15,59 @@ Page({
       receivables_list: [
         {
           id: '001',
-          address: '韩国东大门1号店',
-          common: '778',
-          consumption: '1000000000.00',
-          returnPoint: '15%',
-          receivables: '45681.00',
-          time: '2018/9/19 10:30'
+          name:'张三',
+          tel:'13912341234',
+          applyCash:'已申请现金提现',
+          common:'2',
+          consumptionAmount:'10000.00',
+          returnPoint: '17%',
+          alreadyPaid: '780000.00',
+          time: '2018/08/10 9:00',
+          address:'仁川市XXX路3路市XXX路3路市XXX路3路',
+          applyCard:'已申请银行卡提现',
+          noCash:'未申请提现',
+          scavenging:'扫码付款'
         }, {
           id: '002',
-          address: '韩国东大门2号店',
-          common: '278',
-          consumption: '2000000000.00',
-          returnPoint: '25%',
-          receivables: '845681.00',
-          time: '2018/9/19 10:30'
+          name: '张三',
+          tel: '13912341234',
+          applyCash: '已申请现金提现',
+          common: '2',
+          consumptionAmount: '10000.00',
+          returnPoint: '17%',
+          alreadyPaid: '780000.00',
+          time: '2018/08/10 9:00',
+          address: '仁川市XXX路3路市XXX路3路市XXX路3路',
+          applyCard: '已申请银行卡提现',
+          noCash: '未申请提现',
         }, {
           id: '003',
-          address: '韩国东大门3号店',
-          common: '378',
-          consumption: '1000000000.00',
-          returnPoint: '55%',
-          receivables: '7681.00',
-          time: '2018/9/19 10:30'
-        }],
+          name: '张三',
+          tel: '13912341234',
+          applyCash: '已申请现金提现',
+          common: '2',
+          consumptionAmount: '10000.00',
+          returnPoint: '17%',
+          alreadyPaid: '780000.00',
+          time: '2018/08/10 9:00',
+          address: '仁川市XXX路3路市XXX路3路市XXX路3路',
+          applyCard: '已申请银行卡提现',
+          noCash: '未申请提现',
+        }, {
+          id: '004',
+          name: '张三',
+          tel: '13912341234',
+          applyCash: '已申请现金提现',
+          common: '2',
+          consumptionAmount: '10000.00',
+          returnPoint: '17%',
+          alreadyPaid: '780000.00',
+          time: '2018/08/10 9:00',
+          address: '仁川市XXX路3路市XXX路3路市XXX路3路',
+          applyCard: '已申请银行卡提现',
+          noCash: '未申请提现',
+        }
+        ],
       total: {
         strip: '3',
         money: '3000.00',
@@ -86,6 +116,42 @@ Page({
       activeIndex: e.currentTarget.id
     });
   },
+
+  //添加消费记录扫描二维码 成功或失败
+  toSweepOrder: function () {
+    var that = this;
+    var show;
+    wx.scanCode({
+      success: (res) => {
+        this.show = "结果:" + res.result + "二维码类型:" + res.scanType + "字符集:" + res.charSet + "路径:" + res.path;
+        that.setData({
+          show: this.show
+        })
+        wx.showToast({
+          title: '成功',
+          icon: 'success',
+          duration: 2000
+        })
+        wx.navigateTo({
+          url: '../QRCodePayment/QRCodePayment',
+
+        })
+       
+      },
+      fail: (res) => {
+        wx.showToast({
+          title: '失败',
+          icon: 'success',
+          duration: 2000
+        })
+      },
+      complete: (res) => {
+      }
+    })
+  },
+
+
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

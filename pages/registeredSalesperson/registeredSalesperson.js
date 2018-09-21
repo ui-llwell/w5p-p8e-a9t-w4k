@@ -37,10 +37,14 @@ Page({
     // wx.navigateBack({
     //   delta: 1
     // })
-    wx.navigateTo({
-      url: '../receivablesBusiness/receivablesBusiness',
+    // wx.navigateTo({
+    //   url: '../receivablesBusiness/receivablesBusiness',
+    // })
+    wx.switchTab({
+      url: '../homePage/homePage',
     })
   },
+
 
   formSubmit: function (e) {
     console.log('form发生了submit事件，携带数据为：', e.detail.value)

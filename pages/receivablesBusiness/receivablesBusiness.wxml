@@ -82,8 +82,8 @@
                 <view class='content'>
                   <view class='content_receivables' wx:for="{{All.receivables_list}}" wx:key="{{id}}" bindtap='next'>
                     <view class='content_address'>{{item.address}}</view>
-                    <view class='content_nav' style='text-align: right;'>收款时间：{{item.time}}</view>
-                    <view class='content_nav'>共{{item.common}}笔</view>
+                    <!-- <view class='content_nav' style='text-align: right;'>收款时间：{{item.time}}</view> -->
+                    <view class='content_nav'><text style='float:left;'>共{{item.common}}笔</text><text style='float:right;'>收款时间：{{item.time}}</text></view>
                     <view class='content_nav'>消费金额：₩ {{item.consumption}}</view>
                     <view class='content_nav'>返点率：{{item.returnPoint}}</view>
                     <view class='content_nav'>预计收款：₩ {{item.receivables}}</view>

@@ -1,0 +1,21 @@
+<!--pages/QRCodePayment/QRCodePayment.wxml-->
+<!-- <text>二维码付款</text> -->
+
+<view class='homePage'>
+  <view class='content'>
+      <view class='con_titie'>
+        <view class='con_titie_h1'>收款</view>
+        <view class='con_titie_p'>韩国东大门3号店</view>
+      </view>
+      <view class='con_money'>
+        <view class='con_money_h1'>付款总计</view>
+        <view class='con_money_p'>
+        ₩<text>10000.00</text>
+        </view>
+      </view>
+      <view class='con_button'>
+        <view class='con_button1' bindtap='confirm'>确认付款</view>
+        <view class='con_button2' bindtap='see'>查看明细</view>
+      </view>
+  </view>
+</view>

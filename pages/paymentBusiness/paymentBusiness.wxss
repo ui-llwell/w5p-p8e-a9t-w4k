@@ -1,4 +1,10 @@
 /* 搜索默认样式 */
+.f1 {
+  float: left;
+}
+.r1 {
+  float: right;
+}
 .searchbar-result{
     margin-top: 0;
     font-size: 14px;
@@ -23,7 +29,9 @@ page,
     padding-bottom: 0;
 }
 
-
+page .weui-navbar  {
+  background: #fff;
+}
 
 .weui-navbar__item.weui-bar__item_on {
   color: #FC595A;
@@ -31,19 +39,25 @@ page,
 .weui-navbar__slider {
   background: #FC595A;
 }
-
+.content{
+  background: #fff;
+  float: left;
+  padding-bottom: 25rpx;
+  overflow: hidden;
+}
 .content_receivables {
   width: 690rpx;
   height: auto;
   padding: 30rpx;
+  overflow: hidden;
   border-bottom: 1rpx solid #E5E5E5;
-  position: relative;
 }
 
 .content_nav {
   font-family: PingFangSC-Regular;
   font-size: 26rpx;
   color: #999999;
+  clear: both;
 }
 .content_time {
   position: absolute;
@@ -58,9 +72,58 @@ page,
   height: auto;
   padding: 20rpx;
   text-align: right;
+  background: #fff;
+  clear: both;
+  
 }
 .total_title {
   font-family: PingFangSC-Regular;
   font-size: 28rpx;
   color: #586C94;
+}
+.content_address {
+  clear: both;
+}
+.content_nav_left {
+  width: 492rpx;
+  height: auto;
+  float: left;
+}
+.content_nav_right {
+  width: 190rpx;
+  height: auto;
+  float: right;
+}
+.hot{
+  font-family: PingFangSC-Regular;
+  font-size: 26rpx;
+  color: #999999;
+  text-align: right;
+}
+.menu {
+  font-family: PingFangSC-Regular;
+  font-size: 26rpx;
+  color: #999999;
+  clear: both;
+  background: #fff;
+}
+.scanning {
+  padding: 0rpx 14rpx;
+  text-align: center;
+  line-height: 60rpx;
+  background: #F8F8F8;
+  font-family: PingFangSC-Regular;
+  font-size: 26rpx;
+  color: #353535;
+  border-radius: 7rpx;
+  float: right;
+}
+.img {
+  width: 113rpx;
+  height: 113rpx;
+  float: right;
+}
+.img image {
+   width: 113rpx;
+  height: 113rpx;
 }

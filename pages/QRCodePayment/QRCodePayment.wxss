@@ -1,0 +1,92 @@
+/* pages/QRCodePayment/QRCodePayment.wxss */
+
+page {
+  width: 750rpx;
+  height: 100%;
+  background: url(http://llwell-wxapp.oss-cn-beijing.aliyuncs.com/PurchasingAssistantWorkbench/home_bg.jpg) no-repeat left top;
+  background-size: 750rpx 100%;
+  
+}
+.content {
+  width: 580rpx;
+  height: 830rpx;
+  position: absolute;
+  background: #F9F9F9;
+  background-size: 512rpx auto;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.con_titie {
+  margin-bottom: 2rpx;
+  width: 500rpx;
+  height: auto;
+  padding: 40rpx;
+}
+.con_titie_h1 {
+  font-family: PingFangSC-Regular;
+  font-size: 26rpx;
+  color: #000000;
+}
+.con_titie_p {
+  opacity: 0.4;
+  font-family: PingFangSC-Light;
+  font-size: 26rpx;
+  color: #000000;
+  margin-top: 10rpx;
+}
+.con_money {
+  width: 500rpx;
+  height:157rpx;
+  padding:0 40rpx;
+  background: #fff;
+}
+.con_money_h1 {
+  opacity: 0.4;
+  font-family: PingFangSC-Regular;
+  font-size: 26rpx;
+  color: #000000;
+  padding: 25rpx 0 0rpx;
+}
+.con_money_p {
+  font-family: AppleMyungjo;
+  font-size: 50rpx;
+  color: #000000;
+  
+}
+.con_money_p text {
+  float: right;
+  width: 430rpx;
+  margin-top: 0rpx;
+}
+.con_button {
+  margin-top: 95rpx;
+}
+.con_button1 {
+  width: 500rpx;
+  height:76rpx;
+  line-height: 76rpx;
+  background: #1AAD19;
+  margin: 0 auto;
+  border-radius: 10rpx;
+  text-align: center;
+  font-family: PingFangSC-Medium;
+  font-size: 26rpx;
+  color: #FFFFFF;
+  margin-bottom: 20rpx;
+}
+.con_button2 {
+  width: 500rpx;
+  height:76rpx;
+  line-height: 76rpx;
+  background: #DFDFDF;
+  margin: 0 auto;
+  border-radius: 10rpx;
+  text-align: center;
+  font-family: PingFangSC-Medium;
+  font-size: 26rpx;
+  color: #000;
+}

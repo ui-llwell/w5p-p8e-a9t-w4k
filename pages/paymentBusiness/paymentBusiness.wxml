@@ -49,7 +49,7 @@
     <!-- 选项卡 -->
     <view class="page__bd">
         <view class="weui-tab">
-            <view class="weui-navbar">
+            <view class="weui-navbar" >
                 <block wx:for-items="{{tabs}}" wx:key="{{index}}">
                     <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
                         <view class="weui-navbar__title">{{item}}</view>
@@ -63,11 +63,24 @@
 
                   <view class='content'>
                     <view class='content_receivables' wx:for="{{All.receivables_list}}" wx:key="{{id}}" bindtap='next'>
-                      <view class='content_address'>{{item.address}}</view>
-                      <view class='content_nav'>共{{item.common}}笔</view>
-                      <view class='content_nav'>消费金额：₩ {{item.consumption}}</view>
-                      <view class='content_nav'>返点率：{{item.returnPoint}}</view>
-                      <view class='content_nav'>预计收款：₩ {{item.receivables}}</view>
+                      <view class='content_address'><text class='f1'>{{item.name}} {{item.tel}}</text><text class='hot r1' >{{item.applyCash}}</text></view>
+                      <view class='content_nav'>
+                        <view class='content_nav_left'>
+                          <view class='menu'>共{{item.common}}笔</view>
+                          <view class='menu'>消费金额：₩ {{item.consumptionAmount}}</view>
+                          <view class='menu'>返点率：{{item.returnPoint}}</view>
+                          <view class='menu'>已付款：₩ {{item.alreadyPaid}}</view>
+                          <view class='menu'>付款时间：{{item.time}}</view>
+                          <view class='menu'>付款地址：{{item.address}}</view>
+                        </view>
+                         <view class='content_nav_right'>
+                          <view class='scanning' bindtap='toSweepOrder'>{{item.scavenging}}</view>
+
+
+
+                        </view>
+                      </view>
+                      
                     </view>
                   </view>
                   <view class='total'>
@@ -82,12 +95,25 @@
                 
                   <view class='content'>
                     <view class='content_receivables' wx:for="{{All.receivables_list}}" wx:key="{{id}}" bindtap='next'>
-                      <view class='content_address'>{{item.address}}</view>
-                      <view class='content_nav' style='text-align: right;'>收款时间：{{item.time}}</view>
-                      <view class='content_nav'>共{{item.common}}笔</view>
-                      <view class='content_nav'>消费金额：₩ {{item.consumption}}</view>
-                      <view class='content_nav'>返点率：{{item.returnPoint}}</view>
-                      <view class='content_nav'>预计收款：₩ {{item.receivables}}</view>
+                      <view class='content_address'><text class='f1'>{{item.name}} {{item.tel}}</text><text class='hot r1' >{{item.applyCash}}</text></view>
+                      <view class='content_nav'>
+                        <view class='content_nav_left'>
+                          <view class='menu'>共{{item.common}}笔</view>
+                          <view class='menu'>消费金额：₩ {{item.consumptionAmount}}</view>
+                          <view class='menu'>返点率：{{item.returnPoint}}</view>
+                          <view class='menu'>已付款：₩ {{item.alreadyPaid}}</view>
+                          <view class='menu'>付款时间：{{item.time}}</view>
+                          <view class='menu'>付款地址：{{item.address}}</view>
+                        </view>
+                         <view class='content_nav_right'>
+                          
+                          <view class='img'><image src='http://llwell-wxapp.oss-cn-beijing.aliyuncs.com/PurchasingAssistantWorkbench/home_bg.jpg'></image></view>
+
+
+
+                        </view>
+                      </view>
+                      
                     </view>
                   </view>
                   <view class='total'>
@@ -95,14 +121,8 @@
                     <view class='total_title'>消费金额总计：₩ {{All.total.money}}</view>
                     <view class='total_title'>预计收款总计：₩ {{All.total.receivables}}</view>
                   </view>
-                </view>
-              <!-- ************选项三的内容************ -->
-                <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
-                  
-                  
                   
                 </view>
-
             </view>
         </view>
     </view>

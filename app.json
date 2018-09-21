@@ -1,12 +1,31 @@
 {
   "pages":[
+    
+    "pages/paymentBusiness/paymentBusiness",
+    "pages/receivablesBusiness/receivablesBusiness",
+   
+    "pages/QRCodePayment/QRCodePayment",
+    "pages/homePage/homePage",
+    
+    
+    
+    
 
 
     
-    "pages/receivablesBusiness/receivablesBusiness",
-    "pages/collectionDetails/collectionDetails",
-    "pages/paymentBusiness/paymentBusiness",
-    "pages/registeredSalesperson/registeredSalesperson"
+    "pages/registeredSalesperson/registeredSalesperson",
+    
+    "pages/collectionDetails/collectionDetails"
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 
   ],
@@ -15,8 +34,31 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "#a9b7b7",
+    "selectedColor": "#FF0000",
+    "borderStyle": "#FAFAFC",
+    "list": [
+      {
+      "pagePath": "pages/homePage/homePage",
+      "text": "首 页",
+      "iconPath": "static/img/home_bar_icon_toppage_normal@3x.png",
+      "selectedIconPath": "static/img/home_bar_icon_toppage_selected@3x.png"
+      },{
+        "pagePath": "pages/receivablesBusiness/receivablesBusiness",
+        "text": "收款业务",
+        "iconPath": "static/img/home_bar_icon_income_normal@3x.png",
+        "selectedIconPath": "static/img/home_bar_icon_income_celected@3x.png"
+      },{
+        "pagePath": "pages/paymentBusiness/paymentBusiness",
+        "text": "付款业务",
+        "iconPath": "static/img/home_bar_icon_pay_normal@3x.png",
+        "selectedIconPath": "static/img/home_bar_icon_pay_celected@3x.png"
+      }
+    ]
   }
-
+  
   
   
 }

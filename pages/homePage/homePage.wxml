@@ -1,0 +1,7 @@
+<!--pages/homePage/homePage.wxml-->
+<!-- <text>首页</text> -->
+<view class='homePage'>
+  <view class='nav' bindtap="toSweepOrder">
+    
+  </view>
+</view>
