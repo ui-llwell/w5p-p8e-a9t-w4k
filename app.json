@@ -1,0 +1,22 @@
+{
+  "pages":[
+
+
+    
+    "pages/receivablesBusiness/receivablesBusiness",
+    "pages/collectionDetails/collectionDetails",
+    "pages/paymentBusiness/paymentBusiness",
+    "pages/registeredSalesperson/registeredSalesperson"
+    
+
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  }
+
+  
+  
+}
