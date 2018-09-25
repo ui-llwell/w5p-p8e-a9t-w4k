@@ -7,7 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    receivables:'收款',
+    address:'韩国东大门3号店',
+    money:'10000.00'
   },
   confirm: function(){
     wx.showToast({

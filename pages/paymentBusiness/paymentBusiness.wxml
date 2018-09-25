@@ -9,7 +9,7 @@
             <view class="weui-search-bar__form">
                 <view class="weui-search-bar__box">
                     <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-                    <input type="text" class="weui-search-bar__input" placeholder="输入商家名称查询" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+                    <input type="text" class="weui-search-bar__input" placeholder="输入商家名称查询" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" bindconfirm="search"/>
                     <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
                         <icon type="clear" size="14"></icon>
                     </view>
@@ -62,10 +62,10 @@
                 <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
 
                   <view class='content'>
-                    <view class='content_receivables' wx:for="{{All.receivables_list}}" wx:key="{{id}}" bindtap='next'>
-                      <view class='content_address'><text class='f1'>{{item.name}} {{item.tel}}</text><text class='hot r1' >{{item.applyCash}}</text></view>
+                    <view class='content_receivables' wx:for="{{All.receivables_list}}" wx:key="{{id}}" data-index='{{index}}'>
+                      <view class='content_address' bindtap='next'><text class='f1' >{{item.name}} {{item.tel}}</text><text class='hot r1' >{{item.applyCash}}</text></view>
                       <view class='content_nav'>
-                        <view class='content_nav_left'>
+                        <view class='content_nav_left'  bindtap='next'  data-num='{{index}}'>
                           <view class='menu'>共{{item.common}}笔</view>
                           <view class='menu'>消费金额：₩ {{item.consumptionAmount}}</view>
                           <view class='menu'>返点率：{{item.returnPoint}}</view>
@@ -94,10 +94,10 @@
                 <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
                 
                   <view class='content'>
-                    <view class='content_receivables' wx:for="{{All.receivables_list}}" wx:key="{{id}}" bindtap='next'>
-                      <view class='content_address'><text class='f1'>{{item.name}} {{item.tel}}</text><text class='hot r1' >{{item.applyCash}}</text></view>
+                    <view class='content_receivables' wx:for="{{All.receivables_list}}" wx:key="{{id}}" data-index='{{index}}'>
+                      <view class='content_address' ><text class='f1' bindtap='next'>{{item.name}} {{item.tel}}</text><text bindtap='card' class='hot r1' >{{item.applyCash}}</text></view>
                       <view class='content_nav'>
-                        <view class='content_nav_left'>
+                        <view class='content_nav_left' bindtap='next'>
                           <view class='menu'>共{{item.common}}笔</view>
                           <view class='menu'>消费金额：₩ {{item.consumptionAmount}}</view>
                           <view class='menu'>返点率：{{item.returnPoint}}</view>
@@ -105,9 +105,26 @@
                           <view class='menu'>付款时间：{{item.time}}</view>
                           <view class='menu'>付款地址：{{item.address}}</view>
                         </view>
-                         <view class='content_nav_right'>
-                          
-                          <view class='img'><image src='http://llwell-wxapp.oss-cn-beijing.aliyuncs.com/PurchasingAssistantWorkbench/home_bg.jpg'></image></view>
+                        <!-- <view class='content_nav_right' bindtap="setModalStatus" data-status="1">  -->
+
+                         <view class='content_nav_right' > 
+                           <!-- <view class='card_img' wx:for='{{All.imgArr}}' wx:key="{{index}}">
+                            <image class='img' src='{{item}}' data-index='{{index}}' bindtap='previewImg'></image>
+                           </view> -->
+                           <view class='card_img' >
+                            <image mode='aspectFit' class='img' src='{{item.cardImg}}' data-index='{{index}}' bindtap='previewImg'></image>
+                           </view>
+
+
+                          <!-- <view class='img'>
+                            <image mode='aspectFit' src='{{item.cardImg}}'></image>
+                            <view class="drawer_screen" bindtap="setModalStatus" data-status="0" wx:if="{{showModalStatus}}"></view>
+                            <view animation="{{animationData}}" class="drawer_attr_box" wx:if="{{showModalStatus}}">
+                            <view class="close_icon" style='display:none' bindtap="setModalStatus" data-status="0">×</view>
+                              
+                                <image mode='aspectFit' class="drawer_image" src="{{item.bgImg}}"></image>
+                                </view>
+                          </view> -->
 
 
 

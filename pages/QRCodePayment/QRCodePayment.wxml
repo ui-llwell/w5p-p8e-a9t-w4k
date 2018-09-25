@@ -4,13 +4,13 @@
 <view class='homePage'>
   <view class='content'>
       <view class='con_titie'>
-        <view class='con_titie_h1'>收款</view>
-        <view class='con_titie_p'>韩国东大门3号店</view>
+        <view class='con_titie_h1'>{{receivables}}</view>
+        <view class='con_titie_p'>{{address}}</view>
       </view>
       <view class='con_money'>
         <view class='con_money_h1'>付款总计</view>
         <view class='con_money_p'>
-        ₩<text>10000.00</text>
+        ₩<text>{{money}}</text>
         </view>
       </view>
       <view class='con_button'>

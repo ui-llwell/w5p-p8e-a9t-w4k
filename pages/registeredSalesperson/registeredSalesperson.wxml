@@ -3,7 +3,7 @@
 
 <view class='registeredSalesperson'>
   <form bindsubmit="formSubmit" bindreset="formReset">
-    <view class='hot'>注册成为流连业务员</view>
+    <view class='hot'>{{title}}</view>
     <view class='nav'>
       <text class='nav_text'>业务员</text>
       <input value='{{num}}' name='num' class='nav_input' type='number' bindinput="userNumInput" placeholder='请输入业务员编号'></input>

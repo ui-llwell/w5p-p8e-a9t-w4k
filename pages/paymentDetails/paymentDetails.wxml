@@ -1,7 +1,6 @@
-<!--pages/collectionDetails/collectionDetails.wxml-->
-<!-- <text>详情页</text> -->
-
-<view class='collectionDetails'>
+<!--pages/paymentDetails/paymentDetails.wxml-->
+<!-- <text>付款业务详情</text> -->
+<view class='paymentDetails'>
 
   <view class='header'>{{All.title}}</view>
   <view class='content' wx:for="{{All.detailsList}}" wx:key="{{id}}">
@@ -18,5 +17,18 @@
   </view>
   <view class='footer' wx:if="{{isshow == 0}}">
     <button class='but'  bindtap="toSweepOrder">扫码收款</button>
+  </view>
+  <view class='card'  wx:if="{{isshow == 1}}">
+    <view class='header' >韩国东大门3号店-待收款</view>
+    <view class='card_img' wx:for='{{All.imgArr}}' wx:key="{{index}}">
+      <!-- <image mode='aspectFit' src='{{All.cardImg}}'></image> -->
+
+      <image class='img' src='{{item}}' data-index='{{index}}' bindtap='previewImg'></image>
+        
+
+
+
+
+    </view>
   </view>
 </view>

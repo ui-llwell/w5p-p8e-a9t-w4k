@@ -15,9 +15,9 @@ Page({
       receivables_list: [
         {
           id: '001',
-          name:'张三',
+          name:'1张三',
           tel:'13912341234',
-          applyCash:'已申请现金提现',
+          applyCash:'银行卡付款已完成',
           common:'2',
           consumptionAmount:'10000.00',
           returnPoint: '17%',
@@ -26,10 +26,11 @@ Page({
           address:'仁川市XXX路3路市XXX路3路市XXX路3路',
           applyCard:'已申请银行卡提现',
           noCash:'未申请提现',
-          scavenging:'扫码付款'
+          scavenging:'扫码付款',
+          cardImg: 'http://llwell-wxapp.oss-cn-beijing.aliyuncs.com/PurchasingAssistantWorkbench/home_bg.jpg',
         }, {
           id: '002',
-          name: '张三',
+          name: '2张三',
           tel: '13912341234',
           applyCash: '已申请现金提现',
           common: '2',
@@ -40,9 +41,10 @@ Page({
           address: '仁川市XXX路3路市XXX路3路市XXX路3路',
           applyCard: '已申请银行卡提现',
           noCash: '未申请提现',
+          cardImg: 'http://llwell-wxapp.oss-cn-beijing.aliyuncs.com/PurchasingAssistantWorkbench/home_page_icon_planetbg@3x.png',
         }, {
           id: '003',
-          name: '张三',
+          name: '3张三',
           tel: '13912341234',
           applyCash: '已申请现金提现',
           common: '2',
@@ -53,28 +55,53 @@ Page({
           address: '仁川市XXX路3路市XXX路3路市XXX路3路',
           applyCard: '已申请银行卡提现',
           noCash: '未申请提现',
-        }, {
-          id: '004',
-          name: '张三',
-          tel: '13912341234',
-          applyCash: '已申请现金提现',
-          common: '2',
-          consumptionAmount: '10000.00',
-          returnPoint: '17%',
-          alreadyPaid: '780000.00',
-          time: '2018/08/10 9:00',
-          address: '仁川市XXX路3路市XXX路3路市XXX路3路',
-          applyCard: '已申请银行卡提现',
-          noCash: '未申请提现',
+          cardImg: 'http://bpic.588ku.com/element_origin_min_pic/16/10/30/528aa13209e86d5d9839890967a6b9c1.jpg',
         }
         ],
       total: {
         strip: '3',
         money: '3000.00',
         receivables: '8000.00'
-      }
+      },
+      num:'',
+      imgArr: [
+        'http://llwell-wxapp.oss-cn-beijing.aliyuncs.com/PurchasingAssistantWorkbench/home_bg.jpg'
+      ]
     }
   },
+  previewImg: function (e) {
+    //console.log(e.currentTarget.dataset.index);
+    var index = e.currentTarget.dataset.index;
+    var imgArr = this.data.All.receivables_list;
+    var shu = new Array()
+     console.log(shu)
+    // console.log(imgArr[index].cardImg)
+    //var str = imgArr[index].cardImg
+    var shua = shu.push(imgArr[index].cardImg)
+    //console.log(shua)
+    //console.log(imgArr[index].cardImg)
+    wx.previewImage({
+      current: imgArr[index],     //当前图片地址
+      //urls: imgArr,               //所有要预览的图片的地址集合 数组形式
+      urls: shu,               //所有要预览的图片的地址集合 数组形式
+
+      // success: function (res) { },
+      // fail: function (res) { },
+      // complete: function (res) { },
+    })
+  },
+
+  next(e){
+    var num = this.data.activeIndex;
+    console.log(num)
+    wx.navigateTo({
+      url: '../paymentDetails/paymentDetails?num=' + this.data.activeIndex,
+    })
+  },
+  card(){
+    
+  },
+
   showInput: function () {
     this.setData({
       inputShowed: true
@@ -95,6 +122,10 @@ Page({
     this.setData({
       inputVal: e.detail.value
     });
+  },
+  search: function (e) {
+    console.log('e', e.detail.value)
+
   },
   /**
    * 生命周期函数--监听页面加载
@@ -149,7 +180,25 @@ Page({
       }
     })
   },
-
+  setModalStatus: function (e) {
+    console.log("设置显示状态，1显示0不显示", e.currentTarget.dataset.status);
+    if (e.currentTarget.dataset.status == 1) {
+      this.setData(
+        {
+          showModalStatus: true
+        }
+      );
+    }
+    setTimeout(function () {
+      if (e.currentTarget.dataset.status == 0) {
+        this.setData(
+          {
+            showModalStatus: false
+          }
+        );
+      }
+    }.bind(this), 200)
+  },
 
 
 

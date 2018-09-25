@@ -13,6 +13,7 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     num: '',
+    title:'注册成为流连业务员'
   },
   userNumInput: function (e) {
     this.setData({
