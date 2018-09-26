@@ -105,28 +105,12 @@
                           <view class='menu'>付款时间：{{item.time}}</view>
                           <view class='menu'>付款地址：{{item.address}}</view>
                         </view>
-                        <!-- <view class='content_nav_right' bindtap="setModalStatus" data-status="1">  -->
 
                          <view class='content_nav_right' > 
-                           <!-- <view class='card_img' wx:for='{{All.imgArr}}' wx:key="{{index}}">
-                            <image class='img' src='{{item}}' data-index='{{index}}' bindtap='previewImg'></image>
-                           </view> -->
+                           
                            <view class='card_img' >
                             <image mode='aspectFit' class='img' src='{{item.cardImg}}' data-index='{{index}}' bindtap='previewImg'></image>
                            </view>
-
-
-                          <!-- <view class='img'>
-                            <image mode='aspectFit' src='{{item.cardImg}}'></image>
-                            <view class="drawer_screen" bindtap="setModalStatus" data-status="0" wx:if="{{showModalStatus}}"></view>
-                            <view animation="{{animationData}}" class="drawer_attr_box" wx:if="{{showModalStatus}}">
-                            <view class="close_icon" style='display:none' bindtap="setModalStatus" data-status="0">×</view>
-                              
-                                <image mode='aspectFit' class="drawer_image" src="{{item.bgImg}}"></image>
-                                </view>
-                          </view> -->
-
-
 
                         </view>
                       </view>

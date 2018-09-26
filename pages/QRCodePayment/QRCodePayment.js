@@ -17,11 +17,16 @@ Page({
       icon: 'success',
       duration: 2000
     })
-    wx.switchTab({
-      duration: 2000,
-      url: '../homePage/homePage'
+    setTimeout(function () {
+      wx.switchTab({
+        duration: 2000,
+        url: '../homePage/homePage'
 
-    })
+      })
+    }, 1000)
+    
+    
+    
   },
   //getApp().globalData.num = 1,
   see: function(){

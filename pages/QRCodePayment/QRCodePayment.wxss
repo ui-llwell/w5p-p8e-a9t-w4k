@@ -25,6 +25,8 @@ page {
   width: 500rpx;
   height: auto;
   padding: 40rpx;
+  margin-left: -40rpx;
+  margin-top: -50rpx;
 }
 .con_titie_h1 {
   font-family: PingFangSC-Regular;
@@ -43,6 +45,7 @@ page {
   height:157rpx;
   padding:0 40rpx;
   background: #fff;
+  margin-left: -40rpx;
 }
 .con_money_h1 {
   opacity: 0.4;
@@ -89,4 +92,15 @@ page {
   font-family: PingFangSC-Medium;
   font-size: 26rpx;
   color: #000;
+}
+.content_wrap {
+  
+  width: 500rpx;
+  height: 600rpx;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin:auto;
 }

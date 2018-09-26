@@ -172,7 +172,7 @@ Page({
       fail: (res) => {
         wx.showToast({
           title: '失败',
-          icon: 'success',
+          icon: 'loading',
           duration: 2000
         })
       },

@@ -44,44 +44,33 @@ Page({
 
   //添加消费记录扫描二维码 成功或失败
   toSweepOrder: function () {
+    var that = this;
+    var show;
     wx.scanCode({
       success: (res) => {
-        var that = this;
-        app.Ajax(
-          'Shop',
-          'POST',
-          'ScanCode',
-          // { code: '123456' },
-          { code: res.result },
-          function (json) {
-            // console.log('json',json);
-            if (json.success) {
-              that.setData({
-                scanningConsume: wx.T.getLanguage().record.scanImgUrlConsumerSuccess,
-                userId: json.data.userId
-              })
-            } else {
-              if (wx.getStorageSync('langIndex') == 1) {
-                wx.showToast({
-                  title: '스캔 실패 하였습니다',
-                  icon: 'loading',
-                  duration: 1500
-                })
-              } else {
-                wx.showToast({
-                  title: '扫描失败',
-                  icon: 'loading',
-                  duration: 1500
-                })
-              }
+        this.show = "结果:" + res.result + "二维码类型:" + res.scanType + "字符集:" + res.charSet + "路径:" + res.path;
+        that.setData({
+          show: this.show
+        })
+        wx.showToast({
+          title: '成功',
+          icon: 'success',
+          duration: 2000
+        })
+        wx.navigateTo({
+          url: '../QRCodePayment/QRCodePayment',
 
-            }
+        })
 
-          }
-        );
       },
       fail: (res) => {
-        console.log(res);
+        wx.showToast({
+          title: '失败',
+          icon: 'loading',
+          duration: 2000
+        })
+      },
+      complete: (res) => {
       }
     })
   },

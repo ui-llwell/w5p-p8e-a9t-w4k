@@ -17,6 +17,6 @@
     <view class='total_title'>收款时间：₩ {{All.total.time}}</view>
   </view>
   <view class='footer' wx:if="{{isshow == 0}}">
-    <button class='but'  bindtap="toSweepOrder">扫码收款</button>
+    <button class='but' bindtap="toSweepOrder">扫码收款</button>
   </view>
 </view>
