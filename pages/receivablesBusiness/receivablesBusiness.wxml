@@ -3,7 +3,7 @@
 
 <view class='receivablesBusiness'>
   <!-- 搜索 -->
-    <view class="page__bd">
+    <!-- <view class="page__bd">
         <view class="weui-search-bar">
             <view class="weui-search-bar__form">
                 <view class="weui-search-bar__box">
@@ -20,31 +20,7 @@
             </view>
             <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
         </view>
-<!-- 
-        <view class="weui-cells searchbar-result" wx:if="{{inputVal.length > 0}}">
-            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
-                <view class="weui-cell__bd">
-                    <view>实时搜索文本</view>
-                </view>
-            </navigator>
-            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
-                <view class="weui-cell__bd">
-                    <view>1实时搜索文本</view>
-                </view>
-            </navigator>
-            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
-                <view class="weui-cell__bd">
-                    <view>2实时搜索文本</view>
-                </view>
-            </navigator>
-            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
-                <view class="weui-cell__bd">
-                    <view>3实时搜索文本</view>
-                </view>
-            </navigator>
-        </view>
-         -->
-    </view>
+    </view> -->
     <!-- 选项卡 -->
     <view class="page__bd">
         <view class="weui-tab">
@@ -57,43 +33,44 @@
                 <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
             </view>
             <view class="weui-tab__panel">
-              <!-- ************选项一的内容************ -->
+              <!-- **********待收款**选项一的内容************ -->
                 <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
 
                   <view class='content'>
-                    <view class='content_receivables' wx:for="{{All.receivables_list}}" wx:key="{{id}}" bindtap='next'>
-                      <view class='content_address'>{{item.address}}</view>
-                      <view class='content_nav'>共{{item.common}}笔</view>
-                      <view class='content_nav'>消费金额：₩ {{item.consumption}}</view>
-                      <view class='content_nav'>返点率：{{item.returnPoint}}</view>
-                      <view class='content_nav'>预计收款：₩ {{item.receivables}}</view>
+                    <view class='content_receivables' wx:for="{{getData.pay.payList}}" data-shopName="{{item.shopName}}" data-shopId="{{item.shopId}}" wx:key="{{id}}" bindtap='getPayRecordList'>
+                      <view class='content_address'>{{item.shopName}}</view>
+                      <view class='content_nav'>共{{item.num}}笔</view>
+                      <view class='content_nav'>消费金额：₩ {{item.sumTotal}}</view>
+                      <view class='content_nav'>返点率：{{item.shopRate}}</view>
+                      <view class='content_nav'>预计收款：₩ {{item.sumShopMoney}}</view>
                     </view>
                   </view>
-                  <view class='total'>
-                    <view class='total_title'>共{{All.total.strip}}条记录</view>
-                    <view class='total_title'>消费金额总计：₩ {{All.total.money}}</view>
-                    <view class='total_title'>预计收款总计：₩ {{All.total.receivables}}</view>
+                  <view class='total' hidden="{{getData.pay.payList == ''}}">
+                    <view class='total_title'>共{{getData.pay.payCount}}条记录</view>
+                    <view class='total_title'>消费金额总计：₩ {{getData.pay.paySumTotal}}</view>
+                    <view class='total_title'>预计收款总计：₩ {{getData.pay.paySumMoney}}</view>
                   </view>
-              
+              <!-- 当内容List 不为空时隐藏 -->
+                  <view class='noRecord' hidden="{{getData.pay.payList != ''}}">{{noRecord}}</view>
                 </view>
-              <!-- ************选项二的内容************ -->
+              <!-- *********已收款***选项二的内容************ -->
                 <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
                 
                 <view class='content'>
-                  <view class='content_receivables' wx:for="{{All.receivables_list}}" wx:key="{{id}}" bindtap='next'>
-                    <view class='content_address'>{{item.address}}</view>
+                  <view class='content_receivables' wx:for="{{getData.paid.paidList}}"  data-shopName="{{item.shopName}}"  data-guid="{{item.guid}}" wx:key="{{id}}" bindtap='getPaidRecordList'>
+                    <view class='content_address'>{{item.shopName}}</view>
                     <!-- <view class='content_nav' style='text-align: right;'>收款时间：{{item.time}}</view> -->
-                    <view class='content_nav'><text style='float:left;'>共{{item.common}}笔</text><text style='float:right;'>收款时间：{{item.time}}</text></view>
-                    <view class='content_nav'>消费金额：₩ {{item.consumption}}</view>
-                    <view class='content_nav'>返点率：{{item.returnPoint}}</view>
-                    <view class='content_nav'>预计收款：₩ {{item.receivables}}</view>
+                    <view class='content_nav'><text style='float:left;'>共{{item.num}}笔</text><text style='float:right;'>收款时间：{{item.gatherTime}}</text></view>
+                    <view class='content_nav'>消费金额：₩ {{item.sumTotal}}</view>
+                    <view class='content_nav'>返点率：{{item.shopRate}}</view>
+                    <view class='content_nav'>已收款：₩ {{item.sumShopMoney}}</view>
                     
                   </view>
                 </view>
                 <view class='total'>
-                  <view class='total_title'>共{{All.total.strip}}条记录</view>
-                  <view class='total_title'>消费金额总计：₩ {{All.total.money}}</view>
-                  <view class='total_title'>预计收款总计：₩ {{All.total.receivables}}</view>
+                  <view class='total_title'>共{{getData.paid.paidCount}}条记录</view>
+                  <view class='total_title'>消费金额总计：₩ {{getData.paid.paidSumTotal}}</view>
+                  <view class='total_title'>已收款总计：₩ {{getData.paid.paidSumMoney}}</view>
                 </view>
 
 

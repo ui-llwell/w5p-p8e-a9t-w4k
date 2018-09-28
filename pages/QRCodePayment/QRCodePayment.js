@@ -7,88 +7,60 @@ Page({
    * 页面的初始数据
    */
   data: {
-    receivables:'收款',
-    address:'韩国东大门3号店',
-    money:'10000.00'
+    receivablesLabel:['收款','付款'],
+    sweepCodeResults:{
+      resultType:'',
+      resultKey:'',
+      resultTitle: '',
+      resultMoney: '',
+      resultUser:''
+    }
   },
-  confirm: function(){
-    wx.showToast({
-      title: '付款成功',
-      icon: 'success',
-      duration: 2000
-    })
-    setTimeout(function () {
-      wx.switchTab({
-        duration: 2000,
-        url: '../homePage/homePage'
 
-      })
-    }, 1000)
-    
-    
-    
-  },
-  //getApp().globalData.num = 1,
-  see: function(){
-    wx.navigateTo({
-      url: '../collectionDetails/collectionDetails?num=1',
-      
-    })
-  },
-  
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // console.log('~',options)
+    this.setData({
+      sweepCodeResults: JSON.parse(options.SweepCodeResults)
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  ensure: function (op){
+    let resultType = op.currentTarget.dataset.resulttype
+    // console.log('op', op.currentTarget.dataset.resulttype)
+    // 收款业务
+    if (resultType=='SHOP'){
+      app.Ajax(
+        'Staff',
+        'POST',
+        'ShopPay',
+        { 
+          shopId: this.data.sweepCodeResults.resultKey,
+          shopUserId: this.data.sweepCodeResults.resultUser,
+         },
+        function (json) {
+          // console.log('jsonsss',json);
+          if (json.success) {
+            app.Toast('收款成功','success',2000)
+            setTimeout(function(){
+              wx.navigateBack({
+                delta:1
+              })
+            },2000)
+          } else {
+            app.Toast('', 'none', 2500,json.msg.code)
+          }
+        }
+      )
+    } else if (resultType =='USER'){
+      console.log('付款业务')
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  checkDetail: function (e) {
+    // console.log('qqq', e.currentTarget)
+    wx.navigateTo({
+      url: '../receivablesDetails/receivablesDetails?params=' + JSON.stringify(e.currentTarget.dataset),
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

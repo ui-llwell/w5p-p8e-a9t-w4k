@@ -8,86 +8,30 @@ Page({
    * 页面的初始数据
    */
   data: {
-    inputShowed: false,
-    inputVal: "",
+    // inputShowed: false,
+    // inputVal: "",
     tabs: ["待收款", "已收款"],
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,
-    All: {
-      receivables_list:[
-        {
-        id:'001',
-        address:'韩国东大门1号店',
-        common:'778',
-        consumption:'1000000000.00',
-        returnPoint:'15%',
-        receivables:'45681.00',
-        time: '2018/9/19 10:30'
-        },{
-          id: '002',
-          address: '韩国东大门2号店',
-          common: '278',
-          consumption: '2000000000.00',
-          returnPoint: '25%',
-          receivables: '845681.00',
-          time: '2018/9/19 10:30'
-        },{
-          id: '003',
-          address: '韩国东大门3号店',
-          common: '378',
-          consumption: '1000000000.00',
-          returnPoint: '55%',
-          receivables: '7681.00',
-          time: '2018/9/19 10:30'
-        }],
-        total: {
-          strip:'3',
-          money:'3000.00',
-          receivables:'8000.00'
-        }
-    }
-
+    getData:{},
+    noRecord:'您还没有相关记录哦'
   },
-  search:function(e){
-      console.log('e',e.detail.value)
-
-  },
+ 
   next: function(){
     var num = this.data.activeIndex
     wx.navigateTo({
-      url: '../collectionDetails/collectionDetails?collection=' + num,
+      url: '../receivablesDetails/receivablesDetails?collection=' + num,
     })
     console.log(num)
   },
-  showInput: function () {
-    this.setData({
-      inputShowed: true
-    });
-  },
-  hideInput: function () {
-    this.setData({
-      inputVal: "",
-      inputShowed: false
-    });
-  },
-  clearInput: function () {
-    this.setData({
-      inputVal: ""
-    });
-  },
-  inputTyping: function (e) {
-    this.setData({
-      inputVal: e.detail.value
-    });
-  },
+  
   
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var that = this;
-    
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
@@ -96,7 +40,6 @@ Page({
         });
       }
     });
-    
   },
   tabClick: function (e) {
     this.setData({
@@ -115,7 +58,38 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getData()
+  },
+  getData:function(){
+    const that = this;
+    app.Ajax(
+      'Staff',
+      'POST',
+      'GetGatherList',
+      { },
+      function (json) {
+        // console.log('getData',json);
+        if (json.success) {
+          that.setData({
+            getData:json.data
+          })
+        } else {
+          app.Toast('','none',2500,json.msg.code)
+        }
+      }
+    )
+  },
+  getPayRecordList:function(e){
+    // console.log('e', e.currentTarget.dataset.shopid)
+    wx.navigateTo({
+      url: '../receivablesDetails/receivablesDetails?params=' + JSON.stringify(e.currentTarget.dataset),
+    })
+  },
+  getPaidRecordList: function (e) {
+    // console.log('e', e.currentTarget.dataset.shopid)
+    wx.navigateTo({
+      url: '../receivablesDetails/receivablesDetails?params=' + JSON.stringify(e.currentTarget.dataset),
+    })
   },
 
   /**

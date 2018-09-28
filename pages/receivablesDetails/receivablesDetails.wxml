@@ -1,0 +1,21 @@
+<!--pages/collectionDetails/collectionDetails.wxml-->
+<!-- <text>详情页</text> -->
+
+<view class='collectionDetails'>
+
+  <view class='header'>{{shopName}}</view>
+  <view class='content' wx:for="{{ifPay?getData.paid.paidList:getData.pay.payList}}" wx:key="{{id}}">
+    <view class='content_time'>{{item.recordTime}}</view>
+    <view class='content_nav'>消费金额：₩ {{item.total}}</view>
+    <view class='content_nav'> 返点率：{{item.shopRate}}，</view>
+    <view class='content_nav'>{{ifPay?'已收款':'预计收款'}}：₩ {{item.shopMoney}}</view>
+  </view>
+  <view class='total'>
+    <view class='total_title'>共{{ifPay?getData.paid.paidCount:getData.pay.payCount}}条记录</view>
+    <view class='total_title'>消费金额总计：₩ {{ifPay?getData.paid.paidSumTotal:getData.pay.paySumTotal}}</view>
+    <view class='total_title'>{{ifPay?'已收款总计':'预计收款总计'}}：₩ {{ifPay?getData.paid.paidSumMoney:getData.pay.paySumMoney}}</view>
+  </view>
+  <!-- <view class='footer' wx:if="{{isshow == 0}}">
+    <button class='but' bindtap="toSweepOrder">扫码收款</button>
+  </view> -->
+</view>

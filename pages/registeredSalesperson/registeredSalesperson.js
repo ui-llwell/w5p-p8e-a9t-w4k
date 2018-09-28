@@ -41,20 +41,44 @@ Page({
     // wx.navigateTo({
     //   url: '../receivablesBusiness/receivablesBusiness',
     // })
-    wx.switchTab({
-      url: '../homePage/homePage',
-    })
+    // wx.switchTab({
+    //   url: '../homePage/homePage',
+    // })
   },
 
 
   formSubmit: function (e) {
+
+    console.log('app.globalData.userInfo，携带数据为：', app.globalData.userInfo)
+
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    if (!!e.detail.value && app.globalData.userInfo.nickName){
+      app.Ajax(
+        // 方法组名称为：User（代购用户），不是系统通用用户Users
+        'Users',
+        'POST',
+        'StaffReg',
+        { staffCode: e.detail.value.num, ...app.globalData.userInfo },
+        function (json) {
+          // console.log('json',json);
+          if (json.success) {
+            wx.switchTab({
+              url: '../homePage/homePage',
+            })
+          } else {
+            app.Toast('', 'none', 3000, json.msg.code);
+          }
+        }
+      )
+    }
+    
+
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    console.log({ ...app.globalData.userInfo})
   },
   setLanguage() {
     this.setData({

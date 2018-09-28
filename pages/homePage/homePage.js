@@ -1,4 +1,5 @@
 // pages/homePage/homePage.js
+const app = getApp();
 Page({
 
   /**
@@ -13,19 +14,36 @@ Page({
     var show;
     wx.scanCode({
       success: (res) => {
-        this.show = "结果:" + res.result + "二维码类型:" + res.scanType + "字符集:" + res.charSet + "路径:" + res.path;
-        that.setData({
-          show: this.show
-        })
-        wx.showToast({
-          title: '成功',
-          icon: 'success',
-          duration: 2000
-        })
-        wx.navigateTo({
-          url: '../QRCodePayment/QRCodePayment',
-          
-        })
+        app.Ajax(
+          'Staff',
+          'POST',
+          'ScanTheCode',
+          { scanCode: res.result },
+          function (json) {
+            // console.log(json);
+            if (json.success) {
+              wx.navigateTo({
+                url: '../QRCodePayment/QRCodePayment?SweepCodeResults=' + JSON.stringify(json.data),
+              })
+            }else{
+              app.Toast('','none',2500,json.msg.code)
+            }
+          }
+        )
+
+
+
+        // console.log(res)
+        // this.show = "结果:" + res.result + "二维码类型:" + res.scanType + "字符集:" + res.charSet + "路径:" + res.path;
+        // that.setData({
+        //   show: this.show
+        // })
+        // wx.showToast({
+        //   title: '成功',
+        //   icon: 'success',
+        //   duration: 2000
+        // })
+        
 
       },
       fail: (res) => {
@@ -45,7 +63,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log('onload',options)
   },
 
   /**

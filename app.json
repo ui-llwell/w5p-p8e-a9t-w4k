@@ -1,20 +1,15 @@
 {
   "pages":[
-
-    "pages/QRCodePayment/QRCodePayment",
-    "pages/collectionDetails/collectionDetails",
-
-   
-    
-
-    "pages/receivablesBusiness/receivablesBusiness",
-
-
-
-    
     "pages/homePage/homePage",
+    "pages/QRCodePayment/QRCodePayment",
+    "pages/receivablesDetails/receivablesDetails",
+    "pages/receivablesBusiness/receivablesBusiness",
     "pages/paymentDetails/paymentDetails",
     "pages/paymentBusiness/paymentBusiness",
+    "pages/bankCardPaymentDetails/bankCardPaymentDetails",
+    "pages/bankCardPaymentBusiness/bankCardPaymentBusiness",
+
+
     "pages/registeredSalesperson/registeredSalesperson"
     
     

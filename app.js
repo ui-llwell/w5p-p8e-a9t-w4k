@@ -1,17 +1,18 @@
 //app.js
 
-import locales from './utils/locales'
-import T from './utils/i18n'
+// import locales from './utils/locales'
+// import T from './utils/i18n'
 
-T.registerLocale(locales)
-T.setLocaleByIndex(wx.getStorageSync('langIndex') || 0);
-wx.T = T
+// T.registerLocale(locales)
+// T.setLocaleByIndex(wx.getStorageSync('langIndex') || 0);
+// wx.T = T
+const app =getApp();
 
 App({
   onLaunch: function (options) {
     // 展示本地存储能力
     
-    var isDebug = true;//true调试状态使用本地服务器，非调试状态使用远程服务器
+    var isDebug = false;//true调试状态使用本地服务器，非调试状态使用远程服务器
     if (!isDebug) {
       //远程域名
       wx.setStorageSync('domainName', "https://wxapp.llwell.net/api/PG/")
@@ -23,11 +24,12 @@ App({
     // 登录
     wx.login({
       success: res => {
+        const that = this;
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         this.Ajax(
           'Open',
           'POST',
-          'UserLogin',
+          'StaffLogin',
           { code: res.code },
           function (json) {
             // console.log('~~~',json);
@@ -36,34 +38,17 @@ App({
               // console.log(json.data.token);
               
 
-              if (json.data.isReg) {
-                wx.setStorageSync('userType', json.data.userType)
-
-
-                wx.switchTab({
-                  url: '../navHome/navHome',
+              if (!json.data.isReg) {
+                wx.redirectTo({
+                  url: '../registeredSalesperson/registeredSalesperson',
                 })
-              } else {
-                if (options.query.regAgentCode !== undefined) {
-                  wx.setStorageSync('userType', '1')
-                  wx.setStorageSync('agentCode', options.query.regAgentCode)
-                }else{
-                  if (options.query.agentCode === undefined) {
-
-                    wx.setStorageSync('agentCode', '999999')
-                  } else {
-                    wx.setStorageSync('agentCode', options.query.agentCode)
-                  }
-                  wx.setStorageSync('userType', 0)
-                }
-                // console.log(options);
-                
-                
-                // wx.navigateTo({
-                //   url: '../index/index'
-                // })
-              }
+              } 
             }else{
+
+              wx.redirectTo({
+                url: '../registeredSalesperson/registeredSalesperson',
+              })
+              // that.Toast('','none',2000,json.msg.code)
               wx.showToast({
                 title: json.msg.msg,
                 icon: 'none',
@@ -129,5 +114,90 @@ App({
         // wx.hideLoading();
       }
     })
+  }
+  ,
+  Toast: function (title, icon, duration, code) {
+    let content = title;
+    switch (code) {
+      case 10001:
+        content = '您已经绑定过店铺'
+        break;
+      case 10002:
+        content = '二维码无效哦'
+        break;
+      case 10003:
+        content = '绑定店铺失败'
+        break;
+      case 10101:
+        content = '无效的店铺用户'
+        break;
+      case 10102:
+        content = '无效的店铺Id'
+        break;
+      case 10201:
+        content = '请重新扫描二维码'
+        break;
+      case 10202:
+        content = '上传失败'
+        break;
+      case 10301:
+        content = '验证码错误'
+        break;
+      case 10302:
+        content = '用户已存在'
+        break;
+      case 10303:
+        content = '无效的二维码'
+        break;
+      case 10304:
+        content = '手机号已存在'
+        break;
+      case 10305:
+        content = '更新手机号失败'
+        break;
+      case 10306:
+        content = '注册用户失败'
+        break;
+      case 10401:
+        content = '无效的店铺'
+        break;
+      case 10402:
+        content = '用户不存在'
+        break;
+      case 10403:
+        content = '绑定银行卡错误'
+        break;
+      case 10404:
+        content = '请先绑定银行卡'
+        break;
+      case 10405:
+        content = '申请提现失败'
+        break;
+      case 10501:
+        content = '操作员已存在'
+        break;
+      case 10502:
+        content = '注册操作员失败'
+        break;
+      case 10503:
+        content = '无效的操作员码'
+        break;
+      case 10601:
+        content = '当前没有相关款项需要操作哦'
+        break;
+      case 10602:
+        content = '收款失败'
+        break;
+      case 10603:
+        content = '收款失败'
+        break;
+      default:
+        console.log(1);
+    }
+    wx.showToast({
+      title: content,
+      icon: icon,
+      duration: duration
+    });
   }
 })

@@ -5,18 +5,20 @@
   <view class='content'>
     <view class='content_wrap'>
       <view class='con_titie'>
-        <view class='con_titie_h1'>{{receivables}}</view>
-        <view class='con_titie_p'>{{address}}</view>
+        <view class='con_titie_h1'>{{sweepCodeResults.resultType=='SHOP'?'收款':'付款'}}</view>
+        <view class='con_titie_p'>{{sweepCodeResults.resultTitle}}</view>
       </view>
       <view class='con_money'>
-        <view class='con_money_h1'>付款总计</view>
+        <view class='con_money_h1'>{{sweepCodeResults.resultType=='SHOP'?'收款总计':'付款总计'}}</view>
         <view class='con_money_p'>
-        ₩<text>{{money}}</text>
+        ₩<text>{{sweepCodeResults.resultMoney}}</text>
         </view>
       </view>
       <view class='con_button'>
-        <view class='con_button1' bindtap='confirm'>确认付款</view>
-        <view class='con_button2' bindtap='see'>查看明细</view>
+        <button disabled="{{sweepCodeResults.resultMoney==0}}"  class='con_button1' data-resultType='{{sweepCodeResults.resultType}}' bindtap='ensure'>{{sweepCodeResults.resultType=='SHOP'?'确认收款':'确认付款'}}</button>
+        <button disabled="{{sweepCodeResults.resultMoney==0}}" class='con_button2' data-shopName="{{sweepCodeResults.resultTitle}}" data-shopId="{{sweepCodeResults.resultKey}}"  bindtap='checkDetail'>查看明细</button>
+        <!-- <view class='con_button1' bindtap='confirm'>{{sweepCodeResults.resultType=='SHOP'?'确认收款':'确认付款'}}</view>
+        <view class='con_button2' bindtap='see'>查看明细</view> -->
       </view>
     </view>  
   </view>

@@ -39,7 +39,10 @@ Page({
         time:'2018/09/10 9:00'
       },
       title:'韩国东大门3号店-待收款'
-    }
+    },
+    shopName:'',
+    ifPay:false,
+    getData:{}
   },
 
   //添加消费记录扫描二维码 成功或失败
@@ -79,21 +82,55 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+    const that = this;
+    const params = JSON.parse(options.params)
+    // console.log('asdadsads', params)
     this.setData({
-      isshow: options.collection || options.num
-      
+      shopName: params.shopname
     })
-    if (this.data.isshow == 1) {
-      wx.setNavigationBarTitle({
-        title: '已收款业务详情'
-      })
-    } else {
+    if (!!params.shopid){
       wx.setNavigationBarTitle({
         title: '待收款业务详情'
       })
+      app.Ajax(
+        'Staff',
+        'POST',
+        'GetPayRecordList',
+        { shopId: params.shopid },
+        function (json) {
+          console.log('shopId',json);
+          if (json.success) {
+            that.setData({
+              ifPay:false,
+              getData: json.data
+            })
+          } else {
+            app.Toast('', 'none', 2500, json.msg.code)
+          }
+        }
+      )
+    } else if (!!params.guid){
+      wx.setNavigationBarTitle({
+        title: '已收款业务详情'
+      })
+      app.Ajax(
+        'Staff',
+        'POST',
+        'GetPaidRecordList',
+        { guid: params.guid },
+        function (json) {
+          console.log('guid', json);
+          if (json.success) {
+            that.setData({
+              ifPay: true,
+              getData: json.data
+            })
+          } else {
+            app.Toast('', 'none', 2500, json.msg.code)
+          }
+        }
+      )
     }
-    //console.log(isshow)
   },
   
 
