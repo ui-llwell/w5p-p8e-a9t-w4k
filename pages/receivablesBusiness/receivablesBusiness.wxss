@@ -24,6 +24,8 @@ page,
 }
 .weui-navbar {
   background: #fff;
+  position: fixed;
+  
 }
 .content {
   background: #fff;

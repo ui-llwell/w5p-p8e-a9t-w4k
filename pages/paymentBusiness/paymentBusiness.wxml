@@ -4,7 +4,7 @@
 <view class='paymentBusiness'>
 
   <!-- 搜索 -->
-    <view class="page__bd">
+    <!-- <view class="page__bd">
         <view class="weui-search-bar">
             <view class="weui-search-bar__form">
                 <view class="weui-search-bar__box">
@@ -21,31 +21,7 @@
             </view>
             <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
         </view>
-<!-- 
-        <view class="weui-cells searchbar-result" wx:if="{{inputVal.length > 0}}">
-            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
-                <view class="weui-cell__bd">
-                    <view>实时搜索文本</view>
-                </view>
-            </navigator>
-            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
-                <view class="weui-cell__bd">
-                    <view>1实时搜索文本</view>
-                </view>
-            </navigator>
-            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
-                <view class="weui-cell__bd">
-                    <view>2实时搜索文本</view>
-                </view>
-            </navigator>
-            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
-                <view class="weui-cell__bd">
-                    <view>3实时搜索文本</view>
-                </view>
-            </navigator>
-        </view>
-         -->
-    </view>
+    </view> -->
     <!-- 选项卡 -->
     <view class="page__bd">
         <view class="weui-tab">
@@ -58,76 +34,65 @@
                 <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
             </view>
             <view class="weui-tab__panel">
-              <!-- ************选项一的内容************ -->
+              <!-- ************待付款************ -->
                 <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
 
                   <view class='content'>
-                    <view class='content_receivables' wx:for="{{All.receivables_list}}" wx:key="{{id}}" data-index='{{index}}'>
-                      <view class='content_address' bindtap='next'><text class='f1' >{{item.name}} {{item.tel}}</text><text class='hot r1' >{{item.applyCash}}</text></view>
+                    <view class='content_receivables' wx:for="{{getData.apply.applyList}}" data-guid="{{item.guid}}" data-ifpay="0" wx:key="{{id}}" bindtap='getPayDetails'>
+                      <view class='content_address' ><text class='f1' >{{item.payName}} </text><text class='hot r1' >已申请现金付款</text></view>
                       <view class='content_nav'>
-                        <view class='content_nav_left'  bindtap='next'  data-num='{{index}}'>
-                          <view class='menu'>共{{item.common}}笔</view>
-                          <view class='menu'>消费金额：₩ {{item.consumptionAmount}}</view>
-                          <view class='menu'>返点率：{{item.returnPoint}}</view>
-                          <view class='menu'>已付款：₩ {{item.alreadyPaid}}</view>
-                          <view class='menu'>付款时间：{{item.time}}</view>
-                          <view class='menu'>付款地址：{{item.address}}</view>
+                        <view class='content_nav_left'>
+                          <view class='menu'>共{{item.count}}笔</view>
+                          <view class='menu'>消费金额：₩ {{item.total}}</view>
+                          <view class='menu'>待付款：₩ {{item.money}}</view>
+                          <view class='menu'>最早提现时间：{{item.payTime}}</view>
+                          <view class='menu'>提现地址：{{item.addr}}</view>
                         </view>
-                         <view class='content_nav_right'>
+                         <!-- <view class='content_nav_right'>
                           <view class='scanning' bindtap='toSweepOrder'>{{item.scavenging}}</view>
-
-
-
-                        </view>
+                        </view> -->
                       </view>
-                      
                     </view>
                   </view>
-                  <view class='total'>
-                    <view class='total_title'>共{{All.total.strip}}条记录</view>
-                    <view class='total_title'>消费金额总计：₩ {{All.total.money}}</view>
-                    <view class='total_title'>预计收款总计：₩ {{All.total.receivables}}</view>
+                  <view class='total' hidden="{{getData.apply.applyList == ''}}">
+                    <view class='total_title'>共{{getData.apply.applyCount}}条记录</view>
+                    <view class='total_title'>消费金额总计：₩ {{getData.apply.applyTotal}}</view>
+                    <view class='total_title'>待付款总计：₩ {{getData.apply.applyMoney}}</view>
                   </view>
-              
+              <!-- 当内容List 不为空时隐藏 -->
+                  <view class='noRecord' hidden="{{getData.apply.applyList != ''}}">{{noRecord}}</view>
                 </view>
-              <!-- ************选项二的内容************ -->
+              <!-- ************已付款************ -->
                 <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
                 
                   <view class='content'>
-                    <view class='content_receivables' wx:for="{{All.receivables_list}}" wx:key="{{id}}" data-index='{{index}}'>
-                      <view class='content_address' ><text class='f1' bindtap='next'>{{item.name}} {{item.tel}}</text><text bindtap='card' class='hot r1' >{{item.applyCash}}</text></view>
+                    <view class='content_receivables' wx:for="{{getData.pay.payList}}" wx:key="{{id}}" data-guid="{{item.guid}}" data-ifpay="1" bindtap='getPayDetails'>
+                      <view class='content_address' ><text class='f1' >{{item.payName}}</text><text bindtap='card' class='hot r1' >现金付款</text></view>
                       <view class='content_nav'>
-                        <view class='content_nav_left' bindtap='next'>
-                          <view class='menu'>共{{item.common}}笔</view>
-                          <view class='menu'>消费金额：₩ {{item.consumptionAmount}}</view>
-                          <view class='menu'>返点率：{{item.returnPoint}}</view>
-                          <view class='menu'>已付款：₩ {{item.alreadyPaid}}</view>
-                          <view class='menu'>付款时间：{{item.time}}</view>
-                          <view class='menu'>付款地址：{{item.address}}</view>
+                        <view class='content_nav_left' >
+                          <view class='menu'>共{{item.count}}笔</view>
+                          <view class='menu'>消费金额：₩ {{item.total}}</view>
+                          <view class='menu'>已付款：₩ {{item.money}}</view>
+                          <view class='menu'>付款时间：{{item.payTime}}</view>
+                          <view class='menu'>付款地址：{{item.addr}}</view>
                         </view>
-
-                         <view class='content_nav_right' > 
-                           
+                         <!-- <view class='content_nav_right' >
                            <view class='card_img' >
-                            <image mode='aspectFit' class='img' src='{{item.cardImg}}' data-index='{{index}}' bindtap='previewImg'></image>
+                            <image mode='aspectFit' class='img' src='{{item.payImg}}' data-index='{{index}}' bindtap='previewImg'></image>
                            </view>
-
-                        </view>
+                        </view> -->
                       </view>
-                      
                     </view>
                   </view>
-                  <view class='total'>
-                    <view class='total_title'>共{{All.total.strip}}条记录</view>
-                    <view class='total_title'>消费金额总计：₩ {{All.total.money}}</view>
-                    <view class='total_title'>预计收款总计：₩ {{All.total.receivables}}</view>
+                  <view class='total'  hidden="{{getData.pay.payList == ''}}">
+                    <view class='total_title'>共{{getData.pay.payCount}}条记录</view>
+                    <view class='total_title'>消费金额总计：₩ {{getData.pay.paySumTotal}}</view>
+                    <view class='total_title'>预计收款总计：₩ {{getData.pay.paySumMoney}}</view>
                   </view>
-                  
+                  <!-- 当内容List 不为空时隐藏 -->
+                  <view class='noRecord' hidden="{{getData.pay.payList != ''}}">{{noRecord}}</view>
                 </view>
             </view>
         </view>
     </view>
-
-
-
 </view>

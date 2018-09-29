@@ -1,2 +1,25 @@
 <!--pages/bankCardPaymentDetails/bankCardPaymentDetails.wxml-->
-<text>pages/bankCardPaymentDetails/bankCardPaymentDetails.wxml</text>
+<view class='paymentDetails'>
+
+  <view class='header'>{{getData.userName}} - {{ifpay==0?'已申请银行卡':'银行卡付款已完成'}}</view>
+  <view class='content' wx:for="{{getData.list}}" wx:key="{{id}}">
+    <view class='content_time'>{{item.recordTime}}</view>
+    <view class='content_nav'>消费金额：₩ {{item.total}}</view>
+    <view class='content_nav'> 返点率：{{item.rate}}</view>
+    <view class='content_nav'>{{ifpay==0?'预计付款':'已付款'}}：¥ {{item.money}}</view>
+  </view>
+  <view class='total'>
+    <view class='total_title'>共{{getData.count}}条记录</view>
+    <view class='total_title'>消费金额总计：¥ {{getData.total}}</view>
+    <view class='total_title'>{{ifpay==0?'预计付款总计':'已付款总计'}}：¥ {{getData.money}}</view>
+    <view class='total_title'>{{ifpay==0?'最早提现时间':'付款时间'}}：{{getData.payTime}}</view>
+    <view class='total_title'>付款账号：{{getData.bankcardUserName}} -{{getData.bankName}}({{getData.subName}})</view>
+    <view class='total_title'>银行卡号：{{getData.bankcardCode}}</view>
+  </view>
+  <view class='card'  wx:if="{{ifpay == 1}}">
+    <view class='header' >银行卡付款凭证</view>
+    <view class='card_img' wx:for='{{[getData.payImg]}}' wx:key="{{index}}">
+      <image class='img' src='{{item}}'></image>
+    </view>
+  </view>
+</view>

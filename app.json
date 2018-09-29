@@ -11,34 +11,12 @@
 
 
     "pages/registeredSalesperson/registeredSalesperson"
-    
-    
-    
-    
-    
-    
-
-
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
+ 
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "流连工作台",
     "navigationBarTextStyle":"black"
   },
   "tabBar": {
@@ -61,6 +39,12 @@
         "text": "付款业务",
         "iconPath": "static/img/home_bar_icon_pay_normal@3x.png",
         "selectedIconPath": "static/img/home_bar_icon_pay_celected@3x.png"
+      },
+      {
+        "pagePath": "pages/bankCardPaymentBusiness/bankCardPaymentBusiness",
+        "text": "银行卡业务",
+        "iconPath": "static/img/card_normal@3x.png",
+        "selectedIconPath": "static/img/card_selected@3x.png"
       }
     ]
   }

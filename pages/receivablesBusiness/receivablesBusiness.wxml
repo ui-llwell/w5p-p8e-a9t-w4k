@@ -67,18 +67,15 @@
                     
                   </view>
                 </view>
-                <view class='total'>
+                <view class='total' hidden="{{getData.paid.paidList == ''}}">
                   <view class='total_title'>共{{getData.paid.paidCount}}条记录</view>
                   <view class='total_title'>消费金额总计：₩ {{getData.paid.paidSumTotal}}</view>
                   <view class='total_title'>已收款总计：₩ {{getData.paid.paidSumMoney}}</view>
                 </view>
-
-
+                <!-- 当内容List 不为空时隐藏 -->
+                  <view class='noRecord' hidden="{{getData.paid.paidList != ''}}">{{noRecord}}</view>
                 </view>
-              
             </view>
         </view>
     </view>
-
-
 </view>

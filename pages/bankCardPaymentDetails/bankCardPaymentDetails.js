@@ -1,11 +1,13 @@
-// pages/bankCardPaymentDetails/bankCardPaymentDetails.js
+
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    ifpay:0,
+    getData: {},
   },
 
   /**
@@ -13,54 +15,36 @@ Page({
    */
   onLoad: function (options) {
 
+    const that = this;
+    const params = JSON.parse(options.params)
+    // console.log('asdadsads', params)
+    this.setData({
+      ifpay: params.ifpay
+    })
+    if (params.ifpay == 0) {
+      wx.setNavigationBarTitle({
+        title: '待付款业务详情'
+      })
+    } else if (params.ifpay == 1) {
+      wx.setNavigationBarTitle({
+        title: '已付款业务详情'
+      })
+    }
+    app.Ajax(
+      'Staff',
+      'POST',
+      'GetUserPayRecordList',
+      { guid: params.guid, payType: 1 },
+      function (json) {
+        // console.log('guid', json);
+        if (json.success) {
+          that.setData({
+            getData: json.data
+          })
+        } else {
+          app.Toast('', 'none', 2500, json.msg.code)
+        }
+      }
+    )
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

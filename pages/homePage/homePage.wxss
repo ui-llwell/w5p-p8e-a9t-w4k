@@ -3,16 +3,16 @@
 page {
   width: 750rpx;
   height: 100%;
-  background: url(http://llwell-wxapp.oss-cn-beijing.aliyuncs.com/PurchasingAssistantWorkbench/home_bg.jpg) no-repeat left top;
+  background: url(http://llwell-wxapp.oss-cn-beijing.aliyuncs.com/PurchasingAssistantWorkbench/home_bg.png) no-repeat left top;
   background-size: 750rpx 100%;
   
 }
 .nav {
-  width: 512rpx;
-  height: 512rpx;
+  width: 370rpx;
+  height: 370rpx;
   position: absolute;
   background: url(http://llwell-wxapp.oss-cn-beijing.aliyuncs.com/PurchasingAssistantWorkbench/planet@3x.png) no-repeat left top;
-  background-size: 512rpx auto;
+  background-size: 100% auto;
   left: 0;
   top: 0;
   right: 0;
