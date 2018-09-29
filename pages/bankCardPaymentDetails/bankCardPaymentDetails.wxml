@@ -10,7 +10,7 @@
   </view>
   <view class='total'>
     <view class='total_title'>共{{getData.count}}条记录</view>
-    <view class='total_title'>消费金额总计：¥ {{getData.total}}</view>
+    <view class='total_title'>消费金额总计：₩ {{getData.total}}</view>
     <view class='total_title'>{{ifpay==0?'预计付款总计':'已付款总计'}}：¥ {{getData.money}}</view>
     <view class='total_title'>{{ifpay==0?'最早提现时间':'付款时间'}}：{{getData.payTime}}</view>
     <view class='total_title'>付款账号：{{getData.bankcardUserName}} -{{getData.bankName}}({{getData.subName}})</view>

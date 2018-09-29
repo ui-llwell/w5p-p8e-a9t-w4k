@@ -16,7 +16,12 @@
       </view>
       <view class='con_button'>
         <button disabled="{{sweepCodeResults.resultMoney==0}}"  class='con_button1' data-resultType='{{sweepCodeResults.resultType}}' bindtap='ensure'>{{sweepCodeResults.resultType=='SHOP'?'确认收款':'确认付款'}}</button>
-        <button disabled="{{sweepCodeResults.resultMoney==0}}" class='con_button2' data-shopName="{{sweepCodeResults.resultTitle}}" data-shopId="{{sweepCodeResults.resultKey}}"  bindtap='checkDetail'>查看明细</button>
+        <button disabled="{{sweepCodeResults.resultMoney==0}}" class='con_button2' 
+        data-shopName="{{sweepCodeResults.resultTitle}}" 
+        data-shopId="{{sweepCodeResults.resultKey}}" 
+        data-guid="{{sweepCodeResults.resultKey}}" 
+        data-resultType='{{sweepCodeResults.resultType}}' 
+        data-ifpay="0" bindtap='checkDetail'>查看明细</button>
         <!-- <view class='con_button1' bindtap='confirm'>{{sweepCodeResults.resultType=='SHOP'?'确认收款':'确认付款'}}</view>
         <view class='con_button2' bindtap='see'>查看明细</view> -->
       </view>

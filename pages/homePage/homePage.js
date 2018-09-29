@@ -20,10 +20,10 @@ Page({
           'ScanTheCode',
           { scanCode: res.result },
           function (json) {
-            // console.log(json);
+            console.log('sss',json);
             if (json.success) {
               wx.navigateTo({
-                url: '../QRCodePayment/QRCodePayment?SweepCodeResults=' + JSON.stringify(json.data),
+                url: '../QRCodePayment/QRCodePayment?SweepCodeResults=' + JSON.stringify({ ...json.data, scanCode: res.result}),
               })
             }else{
               app.Toast('','none',2500,json.msg.code)

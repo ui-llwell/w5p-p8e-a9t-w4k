@@ -86,8 +86,8 @@
                   </view>
                   <view class='total'  hidden="{{getData.pay.payList == ''}}">
                     <view class='total_title'>共{{getData.pay.payCount}}条记录</view>
-                    <view class='total_title'>消费金额总计：₩ {{getData.pay.paySumTotal}}</view>
-                    <view class='total_title'>预计收款总计：₩ {{getData.pay.paySumMoney}}</view>
+                    <view class='total_title'>消费金额总计：₩ {{getData.pay.payTotal}}</view>
+                    <view class='total_title'>预计收款总计：₩ {{getData.pay.payMoney}}</view>
                   </view>
                   <!-- 当内容List 不为空时隐藏 -->
                   <view class='noRecord' hidden="{{getData.pay.payList != ''}}">{{noRecord}}</view>
