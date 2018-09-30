@@ -45,7 +45,7 @@ page .weui-navbar  {
 .content{
   background: #fff;
   float: left;
-  padding-bottom: 25rpx;
+  /* padding-bottom: 25rpx; */
   overflow: hidden;
 }
 .content_receivables {

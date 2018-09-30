@@ -28,7 +28,10 @@ page,
   
 }
 .content {
-  background: #fff;
+  background:#fff;
+  float:left;
+  padding-bottom:25rpx;
+  overflow:hidden;
 }
 
 .weui-navbar__item.weui-bar__item_on {

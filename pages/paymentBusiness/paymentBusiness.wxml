@@ -39,7 +39,7 @@
 
                   <view class='content'>
                     <view class='content_receivables' wx:for="{{getData.apply.applyList}}" data-guid="{{item.guid}}" data-ifpay="0" wx:key="{{id}}" bindtap='getPayDetails'>
-                      <view class='content_address' ><text class='f1' >{{item.payName}} </text><text class='hot r1' >已申请现金付款</text></view>
+                      <view class='content_address clearfix borBotGray' ><text class='f1' >{{item.payName}} </text><text class='hot r1' >已申请现金付款</text></view>
                       <view class='content_nav'>
                         <view class='content_nav_left'>
                           <view class='menu'>共{{item.count}}笔</view>
@@ -67,7 +67,7 @@
                 
                   <view class='content'>
                     <view class='content_receivables' wx:for="{{getData.pay.payList}}" wx:key="{{id}}" data-guid="{{item.guid}}" data-ifpay="1" bindtap='getPayDetails'>
-                      <view class='content_address' ><text class='f1' >{{item.payName}}</text><text bindtap='card' class='hot r1' >现金付款</text></view>
+                      <view class='content_address clearfix borBotGray' ><text class='f1' >{{item.payName}}</text><text bindtap='card' class='hot r1' >现金付款</text></view>
                       <view class='content_nav'>
                         <view class='content_nav_left' >
                           <view class='menu'>共{{item.count}}笔</view>

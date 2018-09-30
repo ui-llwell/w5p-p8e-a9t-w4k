@@ -38,7 +38,7 @@
 
                   <view class='content'>
                     <view class='content_receivables' wx:for="{{getData.pay.payList}}" data-shopName="{{item.shopName}}" data-shopId="{{item.shopId}}" wx:key="{{id}}" bindtap='getPayRecordList'>
-                      <view class='content_address'>{{item.shopName}}</view>
+                      <view class='content_address borBotGray'>{{item.shopName}}</view>
                       <view class='content_nav'>共{{item.num}}笔</view>
                       <view class='content_nav'>消费金额：₩ {{item.sumTotal}}</view>
                       <view class='content_nav'>返点率：{{item.shopRate}}</view>
@@ -58,7 +58,7 @@
                 
                 <view class='content'>
                   <view class='content_receivables' wx:for="{{getData.paid.paidList}}"  data-shopName="{{item.shopName}}"  data-guid="{{item.guid}}" wx:key="{{id}}" bindtap='getPaidRecordList'>
-                    <view class='content_address'>{{item.shopName}}</view>
+                    <view class='content_address borBotGray'>{{item.shopName}}</view>
                     <!-- <view class='content_nav' style='text-align: right;'>收款时间：{{item.time}}</view> -->
                     <view class='content_nav'><text style='float:left;'>共{{item.num}}笔</text><text style='float:right;'>收款时间：{{item.gatherTime}}</text></view>
                     <view class='content_nav'>消费金额：₩ {{item.sumTotal}}</view>
