@@ -22,7 +22,7 @@
   "tabBar": {
     "color": "#a9b7b7",
     "selectedColor": "#FF0000",
-    "borderStyle": "#FAFAFC",
+    "borderStyle": "white",
     "list": [
       {
       "pagePath": "pages/homePage/homePage",
